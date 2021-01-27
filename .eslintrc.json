@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "airbnb-base",
-    "prettier",
-    "plugin:node/recommended"
-  ],
+  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
