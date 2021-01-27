@@ -184,6 +184,58 @@ class Emitly {
       };
     }
   }
+
+  /**
+   * @property {Function} emit - Trigger an event
+   *
+   * @param {*} eventType - Event type to trigger
+   * @param  {...any} args - Arguments to pass to the handlers
+   * @returns {void}
+   *
+   * @example
+   *   emitly.emit('event', 'message')
+   *   emitly.emit(/^event/, 'message')
+   */
+  emit(eventType, ...args) {
+    const type = normalizeType(eventType, this.caseSensitive);
+
+    if (isRegex(type)) {
+      const types = [...this.handlers.normal.keys()];
+
+      types.forEach(_type => {
+        /**
+         * Execute normal event handlers which match with this regex type
+         */
+        if (type.test(_type)) {
+          const handlers = this.handlers.normal.get(_type);
+
+          handlers.forEach(handler => handler(...args));
+        }
+      });
+    } else {
+      /**
+       * Execute normal event handlers with that event type
+       */
+      if (this.handlers.normal.has(type)) {
+        const handlers = this.handlers.normal.get(type);
+
+        handlers.forEach(handler => handler(...args));
+      }
+
+      const regexes = [...this.handlers.regex.keys()];
+
+      regexes.forEach(regex => {
+        /**
+         * Execute regex event handlers which match with this type
+         */
+        if (regex.test(type)) {
+          const handlers = this.handlers.regex.get(regex);
+
+          handlers.forEach(handler => handler(type, ...args));
+        }
+      });
+    }
+  }
 }
 
 module.exports = Emitly;
