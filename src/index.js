@@ -248,7 +248,9 @@ class Emitly {
    *   emitly.emitAll('message')
    */
   emitAll(...args) {
-    this.emit(/(.*?)/, ...args);
+    const types = [...this.handlers.normal.keys()];
+
+    types.forEach(type => this.emit(type, ...args));
   }
 }
 
