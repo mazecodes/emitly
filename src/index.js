@@ -204,9 +204,10 @@ class Emitly {
 
       types.forEach(_type => {
         /**
-         * Execute normal event handlers which match with this regex type
+         * Execute normal event handlers which match with this regex type.
+         * Event types should be string.
          */
-        if (type.test(_type)) {
+        if (typeof _type === 'string' && type.test(_type)) {
           const handlers = this.handlers.normal.get(_type);
 
           handlers.forEach(handler => handler(...args));
@@ -214,7 +215,7 @@ class Emitly {
       });
     } else {
       /**
-       * Execute normal event handlers with that event type
+       * Execute normal event handlers with that event type.
        */
       if (this.handlers.normal.has(type)) {
         const handlers = this.handlers.normal.get(type);
@@ -226,7 +227,7 @@ class Emitly {
 
       regexes.forEach(regex => {
         /**
-         * Execute regex event handlers which match with this type
+         * Execute regex event handlers which match with this type.
          */
         if (regex.test(type)) {
           const handlers = this.handlers.regex.get(regex);
