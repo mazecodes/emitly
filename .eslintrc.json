@@ -4,6 +4,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-console": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off"
   }
 }
