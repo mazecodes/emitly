@@ -146,6 +146,22 @@ class Emitly {
       }
     }
   }
+
+  /**
+   * @property {Function} clear - Clear an event
+   *
+   * @param {*} eventType - Event type to clear
+   * @returns {void}
+   *
+   * @example
+   *   emitly.clear('event);
+   */
+  clear(eventType) {
+    const type = normalizeType(eventType, this.caseSensitive);
+    const handlerCategory = isRegex(type) ? 'regex' : 'normal';
+
+    this.handlers[handlerCategory].delete(type);
+  }
 }
 
 module.exports = Emitly;
