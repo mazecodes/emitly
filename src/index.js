@@ -43,6 +43,23 @@ class Emitly {
       }
     });
   }
+
+  /**
+   * @property {Function} validateCategory - Validate the given category
+   * @access private
+   *
+   * @param {String} category - The category to validate
+   * @returns {void}
+   *
+   * @example
+   *   validateCategory('normal') // No error
+   *   validateCategory('Foo') // Error
+   */
+  validateCategory(category) {
+    if (!this.handlers[category]) {
+      throw new Error(`Handler category ${category} does not exist`);
+    }
+  }
 }
 
 module.exports = Emitly;
