@@ -12,7 +12,15 @@
     "type": "git",
     "url": "git+https://github.com/mazecodes/emitly.git"
   },
-  "keywords": [],
+  "keywords": [
+    "event",
+    "emit",
+    "event emitter",
+    "emitter",
+    "sub",
+    "subpub",
+    "listener"
+  ],
   "author": "Maze Peterson",
   "license": "MIT",
   "bugs": {
