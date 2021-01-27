@@ -13,7 +13,7 @@
 const normalizeType = (type, isCaseSensitive = true) => {
   let _type = type;
 
-  if (typeof eventName === 'string') {
+  if (typeof type === 'string') {
     _type = isCaseSensitive ? type : type.toLowerCase();
   }
 
