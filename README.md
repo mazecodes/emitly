@@ -153,3 +153,7 @@ Maze Peterson:
 ## Show your support
 
 Give a ⭐ if you liked this project!
+
+## License
+
+[MIT](https://github.com/mazecodes/emitly/blob/master/LICENSE) © Maze Peterson
