@@ -121,6 +121,31 @@ class Emitly {
   onAll(...handlers) {
     this.on(/(.*?)/, ...handlers);
   }
+
+  /**
+   * @property {Function} off - Remove event handlers from an event type
+   *
+   * @param {*} eventType - Event type to remove from
+   * @param  {...Function} handlers - List of handlers to remove
+   * @returns {void}
+   *
+   * @example
+   *   emitly.off('event', handler)
+   */
+  off(eventType, ...handlers) {
+    const type = normalizeType(eventType, this.caseSensitive);
+    const handlerCategory = isRegex(type) ? 'regex' : 'normal';
+
+    if (this.handlers[handlerCategory].has(type)) {
+      handlers.forEach(handler => {
+        this.handlers[handlerCategory].get(type).delete(handler);
+      });
+
+      if (!this.handlers[handlerCategory].get(type).size) {
+        this.handlers[handlerCategory].delete(type);
+      }
+    }
+  }
 }
 
 module.exports = Emitly;
