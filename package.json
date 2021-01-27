@@ -1,6 +1,6 @@
 {
   "name": "emitly",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple event emitter for JavaScript.",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "event emitter",
     "emitter",
     "sub",
-    "subpub",
+    "pubsub",
     "listener"
   ],
   "author": "Maze Peterson",
