@@ -108,6 +108,19 @@ class Emitly {
       this.handlers[handlerCategory].get(type).add(handler);
     });
   }
+
+  /**
+   * @property {Function} onAll - Listen to all events
+   *
+   * @param  {...Function} handlers - List of handlers
+   * @returns {void}
+   *
+   * @example
+   *   emitly.onAll(type => console.log(`Triggered event: ${type}`))
+   */
+  onAll(...handlers) {
+    this.on(/(.*?)/, ...handlers);
+  }
 }
 
 module.exports = Emitly;
