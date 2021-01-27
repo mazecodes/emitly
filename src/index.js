@@ -1,3 +1,5 @@
+const { normalizeType } = require('./helpers/type');
+
 class Emitly {
   /**
    * @constructor
@@ -58,6 +60,27 @@ class Emitly {
   validateCategory(category) {
     if (!this.handlers[category]) {
       throw new Error(`Handler category ${category} does not exist`);
+    }
+  }
+
+  /**
+   * @property {Function} on - Create an event type
+   * @access private
+   *
+   * @param {*} eventType - Event type to create
+   * @param {String} category - Category to add the event to
+   * @returns {void}
+   *
+   * @example
+   *   createEventType('event')
+   */
+  createEventType(eventType, category = 'normal') {
+    const type = normalizeType(eventType);
+
+    this.validateCategory(category);
+
+    if (!this.handlers[category].has(type)) {
+      this.handlers[category].set(type, new Set());
     }
   }
 }
