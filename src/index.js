@@ -1,3 +1,5 @@
+const isRegex = require('is-regex');
+
 const { normalizeType } = require('./helpers/type');
 
 class Emitly {
@@ -35,8 +37,8 @@ class Emitly {
    * @returns {void}
    *
    * @example
-   *   validateHandlers(false) // Error
-   *   validateHandlers(() => {}) // No error
+   *   emitly.validateHandlers(false) // Error
+   *   emitly.validateHandlers(() => {}) // No error
    */
   validateHandlers(...handlers) {
     handlers.forEach(handler => {
@@ -54,8 +56,8 @@ class Emitly {
    * @returns {void}
    *
    * @example
-   *   validateCategory('normal') // No error
-   *   validateCategory('Foo') // Error
+   *   emitly.validateCategory('normal') // No error
+   *   emitly.validateCategory('Foo') // Error
    */
   validateCategory(category) {
     if (!this.handlers[category]) {
@@ -72,7 +74,7 @@ class Emitly {
    * @returns {void}
    *
    * @example
-   *   createEventType('event')
+   *   emitly.screateEventType('event')
    */
   createEventType(eventType, category = 'normal') {
     const type = normalizeType(eventType);
@@ -82,6 +84,29 @@ class Emitly {
     if (!this.handlers[category].has(type)) {
       this.handlers[category].set(type, new Set());
     }
+  }
+
+  /**
+   * @property {Function} on - Add event handlers to adn event type
+   *
+   * @param {*} eventType - Event type to add to
+   * @param  {...Function} handlers - List of handlers
+   * @returns {void}
+   *
+   * @example
+   *   emitly.on('event', () => console.log('Event triggered'))
+   *   emitly.on(/^event/, () => console.log('Event triggered'))
+   */
+  on(eventType, ...handlers) {
+    const type = normalizeType(eventType, this.caseSensitive);
+    const handlerCategory = isRegex(type) ? 'regex' : 'normal';
+
+    this.validateHandlers(...handlers);
+    this.createEventType(type);
+
+    handlers.forEach(handler => {
+      this.handlers[handlerCategory].get(type).add(handler);
+    });
   }
 }
 
