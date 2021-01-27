@@ -3,6 +3,15 @@
   <p><i>A simple event emitter for JavaScript.</i></p>
 </div>
 
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Author](#author)
+- [Support](#show-your-support)
+- [License](#license)
+
 ## Install
 
 npm:
