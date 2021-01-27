@@ -236,6 +236,19 @@ class Emitly {
       });
     }
   }
+
+  /**
+   * @property {Function} emitAll - Trigger all events
+   *
+   * @param  {...any} args - Arguemtns to pass to the handlers
+   * @returns {void}
+   *
+   * @example
+   *   emitly.emitAll('message')
+   */
+  emitAll(...args) {
+    this.emit(/(.*?)/, ...args);
+  }
 }
 
 module.exports = Emitly;
