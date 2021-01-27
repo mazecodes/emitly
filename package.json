@@ -1,0 +1,20 @@
+{
+  "name": "emitly",
+  "version": "1.0.0",
+  "description": "A simple event emitter for JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mazecodes/emitly.git"
+  },
+  "keywords": [],
+  "author": "Maze Peterson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mazecodes/emitly/issues"
+  },
+  "homepage": "https://github.com/mazecodes/emitly#readme"
+}
