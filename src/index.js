@@ -102,7 +102,7 @@ class Emitly {
     const handlerCategory = isRegex(type) ? 'regex' : 'normal';
 
     this.validateHandlers(...handlers);
-    this.createEventType(type);
+    this.createEventType(type, handlerCategory);
 
     handlers.forEach(handler => {
       this.handlers[handlerCategory].get(type).add(handler);
