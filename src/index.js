@@ -24,6 +24,25 @@ class Emitly {
       regex: new Map(),
     };
   }
+
+  /**
+   * @property {Function} validateHandlers - Validate the given handlers
+   * @access private
+   *
+   * @param  {...any} handlers - List of handlers to validate
+   * @returns {void}
+   *
+   * @example
+   *   validateHandlers(false) // Error
+   *   validateHandlers(() => {}) // No error
+   */
+  validateHandlers(...handlers) {
+    handlers.forEach(handler => {
+      if (typeof handler !== 'function') {
+        throw new Error('Hanlder should be a function');
+      }
+    });
+  }
 }
 
 module.exports = Emitly;
