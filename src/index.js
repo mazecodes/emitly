@@ -162,6 +162,28 @@ class Emitly {
 
     this.handlers[handlerCategory].delete(type);
   }
+
+  /**
+   * @property {Function} clearAll - Clear all events
+   *
+   * @param {String} [category] - Handler category to clear (optional)
+   * @returns {void}
+   *
+   * @example
+   *   emitly.clearAll()
+   *   emitly.clearAll('normal')
+   */
+  clearAll(category) {
+    if (category) {
+      this.validateCategory(category);
+      this.handlers[category] = new Map();
+    } else {
+      this.handlers = {
+        normal: new Map(),
+        regex: new Map(),
+      };
+    }
+  }
 }
 
 module.exports = Emitly;
